@@ -3,6 +3,7 @@ use super::{device::Device, kind, kind::Kind};
 use failure::Fallible;
 use libc::{c_char, c_int, c_void};
 use std::borrow::Borrow;
+use std::marker::PhantomData;
 use std::path::Path;
 use torch_sys::*;
 

@@ -1,3 +1,4 @@
+#![feature(const_generics)]
 #[macro_use]
 extern crate lazy_static;
 
@@ -9,6 +10,9 @@ extern crate zip;
 pub mod data;
 
 mod wrappers;
+mod rustic_wrappers;
+pub use rustic_wrappers::*;
+
 pub use wrappers::device::{Cuda, Device};
 pub use wrappers::jit::{CModule, IValue};
 pub use wrappers::kind::Kind;

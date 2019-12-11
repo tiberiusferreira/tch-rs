@@ -2001,6 +2001,7 @@ impl Tensor {
         self.f_constant_pad_nd(pad).unwrap()
     }
 
+    /// https://pytorch.org/docs/stable/tensors.html?#torch.Tensor.contiguous
     pub fn contiguous(&self) -> Tensor {
         self.f_contiguous().unwrap()
     }
@@ -5167,6 +5168,23 @@ impl Tensor {
         self.f_mvlgamma_(p).unwrap()
     }
 
+    /// Dim = in which dimension to narrow, start = in which element of this dimention to start
+    /// length = how many elements of this dimension to return
+    /// Ex:
+    ///
+    /// let example = Tensor::rand(&[1, 3, 2], (Kind::Float, Device::Cpu));
+    /// example.print();
+    /// let narrowed = example.narrow(1, 1, 1);
+    /// narrowed.print();
+    ///
+    /// (1,.,.) =
+    ///  0.0248  0.7090
+    ///  0.0363  0.0828
+    ///  0.4098  0.2942
+    ///[ Variable[CPUFloatType]{1,3,2} ]
+    ///(1,.,.) =
+    /// 0.01 *
+    ///  3.6336  8.2836
     pub fn narrow(&self, dim: i64, start: i64, length: i64) -> Tensor {
         self.f_narrow(dim, start, length).unwrap()
     }
@@ -7120,6 +7138,7 @@ impl Tensor {
         self.f_trace().unwrap()
     }
 
+    /// https://pytorch.org/docs/stable/torch.html#torch.transpose
     pub fn transpose(&self, dim0: i64, dim1: i64) -> Tensor {
         self.f_transpose(dim0, dim1).unwrap()
     }

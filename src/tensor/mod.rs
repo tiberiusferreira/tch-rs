@@ -254,6 +254,7 @@ impl Tensor {
         self.f_view_(&*s.to_shape())
     }
 
+    /// Converts the tensor to given shape
     pub fn view<T: Shape>(&self, s: T) -> Tensor {
         self.view_(&*s.to_shape())
     }

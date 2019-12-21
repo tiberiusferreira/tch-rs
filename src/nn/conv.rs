@@ -139,8 +139,14 @@ pub fn conv1d<'a, T: Borrow<Path<'a>>>(vs: T, i: i64, o: i64, k: i64, c: ConvCon
 }
 
 /// Creates a new two dimension convolution layer.
-pub fn conv2d<'a, T: Borrow<Path<'a>>>(vs: T, i: i64, o: i64, k: i64, c: ConvConfig) -> Conv2D {
-    <[i64; 2]>::conv(vs, i, o, k, c)
+pub fn conv2d<'a, T: Borrow<Path<'a>>>(
+    vs: T,
+    in_channels: i64,
+    out_channels: i64,
+    kernel_size: i64,
+    c: ConvConfig,
+) -> Conv2D {
+    <[i64; 2]>::conv(vs, in_channels, out_channels, kernel_size, c)
 }
 
 /// Creates a new three dimension convolution layer.

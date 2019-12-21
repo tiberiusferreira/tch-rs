@@ -9,8 +9,8 @@ extern crate zip;
 
 pub mod data;
 
-mod wrappers;
 mod rustic_wrappers;
+mod wrappers;
 pub use rustic_wrappers::*;
 
 pub use wrappers::device::{Cuda, Device};

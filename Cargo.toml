@@ -19,9 +19,8 @@ ndarray = "0.13"
 rand = "0.6.5"
 torch-sys = { version = "0.1.4", path = "torch-sys" }
 zip = "0.5"
-
+static_assertions = "1.1.0"
 cpython = { version = "0.2.0", optional = true }
-
 [workspace]
 members = ["torch-sys"]
 

@@ -128,7 +128,10 @@ impl VarStore {
                 Some(src) => {
                     crate::no_grad(|| var.f_copy_(src).map_err(|e| format_err!("{}: {}", name, e)))?
                 }
-                None => return Err(format_err!("cannot find {} in {:?}", name, path.as_ref())),
+//                None => return Err(format_err!("cannot find {} in {:?}", name, path.as_ref())),
+                None => {
+                    println!("Error loading {}", name);
+                }//r
             }
         }
         Ok(())

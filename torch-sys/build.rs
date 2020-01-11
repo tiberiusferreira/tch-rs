@@ -19,7 +19,7 @@ use curl::easy::Easy;
 use failure::Fallible;
 use zip;
 
-const TORCH_VERSION: &'static str = "1.3.1";
+const TORCH_VERSION: &str = "1.3.1";
 
 fn download<P: AsRef<Path>>(source_url: &str, target_file: P) -> Fallible<()> {
     let f = fs::File::create(&target_file)?;
@@ -75,7 +75,7 @@ fn prepare_libtorch_dir() -> PathBuf {
                 .trim()
                 .to_lowercase()
                 .trim_start_matches("cu")
-                .split(".")
+                .split('.')
                 .take(2)
                 .fold("cu".to_string(), |mut acc, curr| {
                     acc += curr;
@@ -127,7 +127,8 @@ fn make<P: AsRef<Path>>(libtorch: P) {
 
     match os.as_str() {
         "linux" | "macos" => {
-            let libtorch_cxx11_abi = env::var("LIBTORCH_CXX11_ABI").unwrap_or("1".to_string());
+            let libtorch_cxx11_abi =
+                env::var("LIBTORCH_CXX11_ABI").unwrap_or_else(|_| "1".to_string());
             cc::Build::new()
                 .cpp(true)
                 .pic(true)
